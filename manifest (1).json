@@ -1,0 +1,12 @@
+{
+  "background_color": "#ffffff",
+  "dir": "ltr",
+  "display": "standalone",
+  "name": "Puzzle Master 6.0",
+  "orientation": "portrait",
+  "scope": "/",
+  "short_name": "Puzzle Master",
+  "start_url": "/PuzzleMaster/",
+  "theme_color": "#ffffff",
+  "description": "challenging logic, math and physics puzzle game."
+}
