@@ -1,0 +1,315 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Puzzle Master 6.0</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+<div id="app">
+
+  <!-- TOP BAR -->
+  <header class="topbar">
+
+    <div class="brand">
+      <div class="logo">🧠</div>
+      <div>
+        <h1>Puzzle Master</h1>
+        <span>INTELLIGENCE CORE 6.0</span>
+      </div>
+    </div>
+
+    <div class="playerStats">
+      <div class="stat">
+        <span>⭐</span>
+        <b id="stars">0</b>
+      </div>
+
+      <div class="stat">
+        <span>🪙</span>
+        <b id="coins">100</b>
+      </div>
+
+      <div class="stat">
+        <span>❤️</span>
+        <b id="lives">5</b>
+      </div>
+    </div>
+
+  </header>
+
+
+  <!-- HOME -->
+  <main id="homePage" class="page active">
+
+    <section class="hero">
+
+      <div class="core">
+        <div class="coreInner">🧠</div>
+      </div>
+
+      <div class="heroText">
+        <span class="tag">NEURAL CHALLENGE</span>
+
+        <h2>اختبر عقلك</h2>
+
+        <p>
+          2000 مرحلة من الألغاز والمنطق والرياضيات والفيزياء
+          مصممة لتزداد صعوبة تدريجيًا.
+        </p>
+
+        <button class="primaryBtn" onclick="openLevels()">
+          🚀 ابدأ التحدي
+        </button>
+      </div>
+
+    </section>
+
+
+    <section class="dashboard">
+
+      <div class="dashCard">
+        <span>🏆</span>
+        <small>أفضل مرحلة</small>
+        <strong id="bestLevel">1</strong>
+      </div>
+
+      <div class="dashCard">
+        <span>🔥</span>
+        <small>Streak</small>
+        <strong id="streak">0</strong>
+      </div>
+
+      <div class="dashCard">
+        <span>⚡</span>
+        <small>XP</small>
+        <strong id="xp">0</strong>
+      </div>
+
+      <div class="dashCard">
+        <span>🎯</span>
+        <small>الدقة</small>
+        <strong id="accuracy">0%</strong>
+      </div>
+
+    </section>
+
+  </main>
+
+
+  <!-- LEVELS -->
+  <main id="levelsPage" class="page">
+
+    <div class="pageHeader">
+      <button class="backBtn" onclick="goHome()">←</button>
+
+      <div>
+        <h2>خريطة المراحل</h2>
+        <p>2000 مرحلة تنتظرك</p>
+      </div>
+
+      <div class="progressBox">
+        <span id="levelProgressText">1 / 2000</span>
+        <div class="progress">
+          <div id="levelProgress"></div>
+        </div>
+      </div>
+    </div>
+
+    <div id="levelsGrid" class="levelsGrid"></div>
+
+  </main>
+
+
+  <!-- QUIZ -->
+  <main id="quizPage" class="page">
+
+    <div class="quizTop">
+
+      <button class="backBtn" onclick="openLevels()">←</button>
+
+      <div class="levelTitle">
+        <span id="categoryIcon">🧠</span>
+        <div>
+          <small id="categoryName">LOGIC</small>
+          <h3>المرحلة <span id="currentLevel">1</span></h3>
+        </div>
+      </div>
+
+      <div class="timer">
+        <span>⏱️</span>
+        <b id="timer">20</b>
+      </div>
+
+    </div>
+
+
+    <div class="quizProgress">
+      <div id="quizProgressBar"></div>
+    </div>
+
+
+    <section class="questionCard">
+
+      <div class="difficulty" id="difficulty">
+        LEVEL 1
+      </div>
+
+      <h2 id="questionText">
+        السؤال
+      </h2>
+
+      <div id="answers" class="answers"></div>
+
+      <div id="numericAnswer" class="numericAnswer hidden">
+
+        <input
+          type="number"
+          id="answerInput"
+          placeholder="اكتب الإجابة"
+        >
+
+        <button onclick="checkNumeric()">
+          تحقق ✓
+        </button>
+
+      </div>
+
+    </section>
+
+
+    <div class="hintArea">
+
+      <button onclick="useHint()" class="hintBtn">
+        💡 تلميح
+        <span id="hintCost">10 🪙</span>
+      </button>
+
+      <span id="questionInfo">
+        اختر الإجابة الصحيحة
+      </span>
+
+    </div>
+
+  </main>
+
+
+  <!-- RESULT -->
+  <div id="resultModal" class="modal">
+
+    <div class="resultCard">
+
+      <div id="resultIcon" class="resultIcon">
+        🎉
+      </div>
+
+      <h2 id="resultTitle">
+        إجابة صحيحة!
+      </h2>
+
+      <p id="resultMessage">
+        ممتاز!
+      </p>
+
+      <div class="resultStats">
+
+        <div>
+          <span>⭐</span>
+          <b id="resultStars">+1</b>
+        </div>
+
+        <div>
+          <span>🪙</span>
+          <b id="resultCoins">+5</b>
+        </div>
+
+        <div>
+          <span>⚡</span>
+          <b id="resultXP">+20 XP</b>
+        </div>
+
+      </div>
+
+      <button id="nextBtn" class="primaryBtn">
+        المرحلة التالية →
+      </button>
+
+    </div>
+
+  </div>
+
+
+  <!-- STATS -->
+  <main id="statsPage" class="page">
+
+    <div class="pageHeader">
+
+      <button class="backBtn" onclick="goHome()">←</button>
+
+      <div>
+        <h2>إحصائياتك</h2>
+        <p>تحليل أداء العقل</p>
+      </div>
+
+    </div>
+
+    <section class="statsPanel">
+
+      <div class="bigStat">
+        <span>⚡</span>
+        <small>XP</small>
+        <strong id="statsXP">0</strong>
+      </div>
+
+      <div class="bigStat">
+        <span>🏆</span>
+        <small>المراحل المكتملة</small>
+        <strong id="statsCompleted">0</strong>
+      </div>
+
+      <div class="bigStat">
+        <span>🎯</span>
+        <small>الإجابات الصحيحة</small>
+        <strong id="statsCorrect">0</strong>
+      </div>
+
+      <div class="bigStat">
+        <span>❌</span>
+        <small>الإجابات الخاطئة</small>
+        <strong id="statsWrong">0</strong>
+      </div>
+
+    </section>
+
+  </main>
+
+
+  <!-- BOTTOM NAV -->
+  <nav class="bottomNav">
+
+    <button onclick="goHome()">
+      <span>🏠</span>
+      <small>الرئيسية</small>
+    </button>
+
+    <button onclick="openLevels()">
+      <span>🗺️</span>
+      <small>المراحل</small>
+    </button>
+
+    <button onclick="openStats()">
+      <span>📊</span>
+      <small>الإحصائيات</small>
+    </button>
+
+  </nav>
+
+</div>
+
+<script src="script.js"></script>
+
+</body>
+</html>
